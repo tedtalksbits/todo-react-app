@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import { Title, Button, Task, ButtonContainer  } from './Elements'
 
-function App() {
+function App({ primary }) {
+
+  const [todos, setTodos] = useState(['Go for a run', 'Build a new app'])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Title>todo app</Title>
+      
+      {
+        todos.map( todo => (
+          <Task>{todo}</Task>
+        ))
+      }
+      <div className="input-container">
+        <input className='app__input' type="text" placeholder='add a task'/>
+      </div>
+      <ButtonContainer>
+        <Button primary={true}>Create Task</Button>
+      </ButtonContainer>
+      
     </div>
   );
 }
